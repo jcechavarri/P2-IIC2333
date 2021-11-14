@@ -11,3 +11,5 @@
 - 2: menú de repartir aldeanos
 - 3: menú de partir juego (solo para el líder)
 - 10: terminar thread
+
+Las codes 0-3 y 10 solo aplican para la etapa inicial (threads).
