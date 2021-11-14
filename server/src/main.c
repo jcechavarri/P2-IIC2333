@@ -4,9 +4,6 @@
 #include "comunication.h"
 #include "conection.h"
 
-
-
-
 extern PlayersInfo* players_info;
 extern int start;
 extern int server_socket;
@@ -23,9 +20,23 @@ int main(int argc, char *argv[]){
   pthread_detach(thread_id);
   wait_ready();
   printf("EMPEZÓ EL JUEGO\n");
-  
 
   pthread_cancel(thread_id);
+
+  // LOGICA JUEGO
+  int active_user = 0;
+  while (1) {
+    // Avisamos que le toca jugar (mostrar menu)
+    // server_send_message(players_info->sock[active_user], 5, "Es tu turno");
+
+    // int msg_code = server_receive_id(players_info->sock[active_user]);
+    // if (msg_code == 1) mostrar_informacion();
+
+    // // ARREGLAR
+    // // [0, 1, NULL, 3]
+    // active_user++;
+    // active_user %= players_info->conectados;
+  }
 
   printf("TERMINO EL JUEGO\n");
 

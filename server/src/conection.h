@@ -8,6 +8,7 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 #include "comunication.h"
+#include <pthread.h>
 
 
 typedef struct player{
@@ -29,7 +30,7 @@ typedef struct players_info{
 } PlayersInfo;
 
 
-
+void wait_ready();
 void *prepare_sockets_and_get_clients();
 
 

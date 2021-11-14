@@ -1,4 +1,3 @@
-#include <pthread.h>
 #include "conection.h"
 
 //LINKS REFERENCIAS:
@@ -15,6 +14,8 @@
 PlayersInfo* players_info;
 pthread_mutex_t lock;
 int server_socket;
+
+void set_ready(int ready);
 
 int start = 0;
 pthread_mutex_t ready_mutex = PTHREAD_MUTEX_INITIALIZER;
@@ -216,7 +217,7 @@ void set_ready(int ready)
   start = ready;
 
   pthread_cond_signal(&ready_cond);
-// or using pthread_cond_broadcast(&ready_cond);
+  // or using pthread_cond_broadcast(&ready_cond);
 
   pthread_mutex_unlock(&ready_mutex);
 
