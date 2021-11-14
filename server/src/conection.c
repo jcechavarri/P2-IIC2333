@@ -32,9 +32,8 @@ void *lobby(void *i){
   char *client_name = server_receive_payload(players_info->sock[n]);
   printf("%s\n", client_name);
   players_info->players[n] = malloc(sizeof(Player));
-  char name[100];
-  strcpy(name, client_name);
-  players_info->players[n]->name = name;
+  players_info->players[n]->name = malloc(sizeof(client_name));
+  strcpy(players_info->players[n]->name, client_name);
   free(client_name);
   
   message = "Reparta a sus aldeanos\n";
@@ -163,6 +162,7 @@ void *prepare_sockets_and_get_clients(){
   int *arg1 = malloc(sizeof(*arg1));
   *arg1 = 0;
   pthread_create(&thread_id, NULL, lobby, (void *) arg1);
+  pthread_detach(thread_id);
   //free(*arg1);
   //crea otro
   printf("Esperando al 2\n");
@@ -171,6 +171,7 @@ void *prepare_sockets_and_get_clients(){
   int *arg2 = malloc(sizeof(*arg2));
   *arg2 = 1;
   pthread_create(&thread_id, NULL, lobby, (void *) arg2);
+  pthread_detach(thread_id);
   //free(*arg2);
   //crea otro
   printf("Esperando al 3\n");
@@ -179,6 +180,7 @@ void *prepare_sockets_and_get_clients(){
   int *arg3 = malloc(sizeof(*arg3));
   *arg3 = 2;
   pthread_create(&thread_id, NULL, lobby, (void *) arg3);
+  pthread_detach(thread_id);
   //free(*arg3);
   //crea otro
   printf("Esperando al 4\n");
@@ -187,6 +189,7 @@ void *prepare_sockets_and_get_clients(){
   int *arg4 = malloc(sizeof(*arg4));
   *arg4 = 3;
   pthread_create(&thread_id, NULL, lobby, (void *) arg4);
+  pthread_detach(thread_id);
   //free(*arg4);
 
   //return sockets_clients;

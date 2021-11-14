@@ -19,10 +19,8 @@ int main(int argc, char *argv[]){
   //PlayersInfo * players_info = prepare_sockets_and_get_clients(IP, PORT);
   pthread_t thread_id;
 
-
-
-
   pthread_create(&thread_id, NULL, prepare_sockets_and_get_clients, NULL);
+  pthread_detach(thread_id);
   wait_ready();
   printf("EMPEZÓ EL JUEGO\n");
   
@@ -34,6 +32,7 @@ int main(int argc, char *argv[]){
   for(int i = 0; i<4;i++){
     if(players_info->sock[i]!= 0){
     server_send_message(players_info->sock[i], 10, "");
+    free(players_info->players[i]->name);
     free(players_info->players[i]);
     }    
   }

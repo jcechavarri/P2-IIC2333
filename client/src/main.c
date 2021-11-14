@@ -86,7 +86,7 @@ int main (int argc, char *argv[]){
 
   // Se cierra el socket
   close(server_socket);
-  free(IP);
+  //free(IP);
 
   return 0;
 }
